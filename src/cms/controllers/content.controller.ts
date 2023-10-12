@@ -179,6 +179,22 @@ export class ContentController {
 
 
   @ApiOperation({
+    summary: '查找已经发布的内容',
+  })
+  @ApiResponse({
+    status: HttpStatus.NO_CONTENT,
+  })
+  @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
+  @Get('publishList')
+  @HttpCode(200)
+  publishList() {
+    return this.ContentService.findAllPublish();
+  }
+
+
+
+  @ApiOperation({
     summary: '生成快照',
   })
   @ApiResponse({

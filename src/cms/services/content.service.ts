@@ -55,6 +55,22 @@ export class ContentService {
     }
   }
 
+
+  async findAllPublish(): Promise<{ data: number[], count: number }> {
+    const [data, count] = await this.contentRepository.findAndCount({
+      where: {
+        isDelete: false,
+        publish: true
+      },
+      order: { createAt: 'DESC' },
+      cache: true
+    })
+
+    return {
+      data: data.map((item) => item.id), count
+    }
+  }
+
   async findAllTemplate({ pageSize, page, userId }): Promise<{ data: Content[], count: number }> {
     const [data, count] = await this.contentRepository.findAndCount({
       where: {
@@ -82,8 +98,6 @@ export class ContentService {
   }
 
   async update(id: number, dto: UpdateContentDto) {
-
-
     const ret = await this.contentRepository.update(id, dto)
 
     // TODO 暂时使用同步刷新

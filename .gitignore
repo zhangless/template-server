@@ -6,6 +6,8 @@
 
 /static
 
+/.env
+
 # Logs
 logs
 *.log

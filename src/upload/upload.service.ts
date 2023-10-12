@@ -13,7 +13,7 @@ export class UploadService {
         private uploadRepository: MongoRepository<Upload>
     ) { }
 
-    staicBaseUrl = process.env.APP_ENV === 'development' ? 'http://localhost:7002/res/' : 'http://api.ricedog.top/res'
+    staicBaseUrl = process.env.APP_ENV === 'development' ? 'http://localhost:7002/res/' : 'http://api.ricedog.top/res/'
 
 
     async upload(dto: UploadDto) {
